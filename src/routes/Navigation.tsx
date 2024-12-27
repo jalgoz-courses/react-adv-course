@@ -1,11 +1,5 @@
 import { Suspense } from 'react';
-import {
-  BrowserRouter,
-  Navigate,
-  NavLink,
-  Route,
-  Routes,
-} from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 
 import { routes } from './routes';
 
@@ -21,30 +15,23 @@ const activeStyle = ({ isActive }: ActiveStyle) =>
 export const Navigation = () => {
   return (
     <Suspense fallback={<h1>Loading...</h1>}>
-      <BrowserRouter>
-        <div className="main-layout">
-          <nav>
-            <img src={logo} alt="Logo" />
+      <div className="main-layout">
+        <nav>
+          <img src={logo} alt="Logo" />
 
-            <ul>
-              {routes.map(({ to, name }) => (
-                <li key={to}>
-                  <NavLink to={to} className={activeStyle}>
-                    {name}
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          <Routes>
-            {routes.map(({ path, Component }) => (
-              <Route key={path} path={path} element={<Component />} />
+          <ul>
+            {routes.map(({ to, name }) => (
+              <li key={to}>
+                <NavLink to={to} className={activeStyle}>
+                  {name}
+                </NavLink>
+              </li>
             ))}
-            <Route path="/*" element={<Navigate to={routes[0].to} replace />} />
-          </Routes>
-        </div>
-      </BrowserRouter>
+          </ul>
+        </nav>
+
+        <Outlet />
+      </div>
     </Suspense>
   );
 };

@@ -1,8 +1,10 @@
-import { Navigation } from './routes/Navigation';
+import { RouterProvider } from 'react-router-dom';
+
+import { AppRouter } from './routes/AppRouter';
 
 const App = () => (
   <>
-    <Navigation />
+    <RouterProvider router={AppRouter} />
   </>
 );
 
