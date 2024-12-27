@@ -1,13 +1,22 @@
 import { Suspense } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 
-import { routes } from './routes';
-
 import logo from '../logo.svg';
 
 type ActiveStyle = {
   isActive: boolean;
 };
+
+const routes = [
+  {
+    to: '/lazyload',
+    name: 'LazyLayout Dash',
+  },
+  {
+    to: '/no-lazy',
+    name: 'No Lazy',
+  },
+];
 
 const activeStyle = ({ isActive }: ActiveStyle) =>
   isActive ? 'nav-active' : '';

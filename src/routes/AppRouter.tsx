@@ -16,20 +16,24 @@ const routes: RouteObject[] = [
         element: <LazyLayout />,
         children: [
           {
-            path: '/lazy1',
+            path: '/lazyload/lazy1',
             element: <LazyPage1 />,
           },
           {
-            path: '/lazy2',
+            path: '/lazyload/lazy2',
             element: <LazyPage2 />,
           },
           {
-            path: '/lazy3',
+            path: '/lazyload/lazy3',
             element: <LazyPage3 />,
           },
           {
-            path: '*',
-            element: <Navigate to="lazy1" replace />,
+            index: true,
+            element: <Navigate to="/lazyload/lazy1" replace />,
+          },
+          {
+            path: '/lazyload/*',
+            element: <Navigate to="/lazyload/lazy1" replace />,
           },
         ],
       },
@@ -38,8 +42,12 @@ const routes: RouteObject[] = [
         element: <NoLazy />,
       },
       {
+        index: true,
+        element: <Navigate to="/no-lazy" replace />,
+      },
+      {
         path: '/*',
-        element: <Navigate to="/" replace />,
+        element: <Navigate to="/no-lazy" replace />,
       },
     ],
   },
